@@ -13,6 +13,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
 
+    var timer: NSTimer?
+    var time = 0
+    
+    
     @IBOutlet weak var distanceReading: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +51,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func startScanning(){
-        let uuid = NSUUID(UUIDString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")
+        let uuid = NSUUID(UUIDString: "B0702880-A295-A8AB-F734-031A98A512DE")
         let beaconRegion = CLBeaconRegion(proximityUUID: uuid!, major: 123, minor: 456, identifier: "MyBeacon")
         locationManager.startRangingBeaconsInRegion(beaconRegion)
         locationManager.startMonitoringForRegion(beaconRegion)
@@ -55,13 +59,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func updateDistance(distance: CLProximity){
         UIView.animateWithDuration(0.8){ [unowned self] in
             switch distance {
+            
+            
+                //if already .near && recordtimeIsRunning .) return 
+                
             case .Far:
                 self.distanceReading.text = "Far"
                 self.view.backgroundColor = UIColor.blueColor()
+    
                 
             case .Near:
                 self.distanceReading.text = "Near"
                 self.view.backgroundColor = UIColor.orangeColor()
+                
+                //startRecordingTime
+                
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "printTime", userInfo: nil, repeats: true)
+                
+                
             case .Unknown:
                 self.distanceReading.text = "Unknown"
                 self.view.backgroundColor = UIColor.grayColor()
@@ -73,6 +88,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
             
         }
+    }
+    
+    func printTime() {
+        time++
+        print(time)
     }
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
         if beacons.count > 0 {

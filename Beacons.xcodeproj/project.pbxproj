@@ -90,12 +90,13 @@
 		E6B993FC1B73A67F00F71065 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mac Bellingrath";
 				TargetAttributes = {
 					E6B994031B73A67F00F71065 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = F7WJD6355G;
+						DevelopmentTeam = UQFL2U85FV;
 					};
 				};
 			};
@@ -290,6 +291,7 @@
 				E6B994181B73A67F00F71065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
